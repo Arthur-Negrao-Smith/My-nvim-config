@@ -22,16 +22,16 @@ keyset({ 'n', 'v', 'i' }, '<leader>ws', '<Cmd>:wq<CR>', { desc = 'Save and quit 
 keyset({ 'n', 'v', 'i' }, '<leader>bq', '<Cmd>BufferClose<CR>', { desc = 'Close actual tab' })
 keyset({ 'n', 'v', 'i' }, '<leader>bl', '<Cmd>BufferNext<CR>', { desc = 'Change to next tab' })
 keyset({ 'n', 'v', 'i' }, '<leader>bh', '<Cmd>BufferPrevious<CR>', { desc = 'Change to previous tab' })
-keyset({ 'n', 'v', 'i' }, '<leader>b<', '<Cmd>BufferMoveNext<CR>', { desc = 'Move to next tab position' })
-keyset({ 'n', 'v', 'i' }, '<leader>b>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move to previous tab position' })
+keyset({ 'n', 'v', 'i' }, '<leader>bL<', '<Cmd>BufferMoveNext<CR>', { desc = 'Move to next tab position' })
+keyset({ 'n', 'v', 'i' }, '<leader>bH>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move to previous tab position' })
 
 -- Move to previous/next
 map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-l>', '<Cmd>BufferNext<CR>', opts)
 
 -- Re-order to previous/next
-map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+map('n', '<A-S-h>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A-S-l>', '<Cmd>BufferMoveNext<CR>', opts)
 
 -- Goto buffer in position...
 map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
