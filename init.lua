@@ -341,6 +341,7 @@ require('lazy').setup({
         { '<leader>h', group = 'Git Hunk', mode = { 'n', 'v' } },
         { '<leader>w', group = 'File', mode = { 'n', 'v', 'i' } },
         { '<leader>e', group = 'Explorer' },
+        { '<leader>b', group = 'Buffers', { 'n', 'v', 'i' } },
       },
     },
   },
