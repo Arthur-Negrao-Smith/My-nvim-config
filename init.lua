@@ -337,11 +337,12 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>s', group = 'Search' },
-        { '<leader>t', group = 'Toggle' },
+        { '<leader>t', group = 'Terminal' },
+        { '<leader>i', group = 'Toggle' },
         { '<leader>h', group = 'Git Hunk', mode = { 'n', 'v' } },
         { '<leader>w', group = 'File', mode = { 'n', 'v' } },
-        { '<leader>e', group = 'Explorer' },
-        { '<leader>b', group = 'Buffers', { 'n', 'v' } },
+        { '<leader>e', group = 'Explorer', icon = '' },
+        { '<leader>b', group = 'Buffers', { 'n', 'v' }, icon = '' },
       },
     },
   },
@@ -614,9 +615,9 @@ require('lazy').setup({
           --
           -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
+            map('<leader>ih', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
+            end, 'Toggle [I]nlay [H]ints')
           end
         end,
       })
@@ -1006,7 +1007,7 @@ require('lazy').setup({
       config = '',
       event = '',
       ft = '',
-      init = '⚙',
+      init = '',
       keys = '󰌌',
       plugin = '',
       runtime = '',
