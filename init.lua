@@ -339,9 +339,9 @@ require('lazy').setup({
         { '<leader>s', group = 'Search' },
         { '<leader>t', group = 'Toggle' },
         { '<leader>h', group = 'Git Hunk', mode = { 'n', 'v' } },
-        { '<leader>w', group = 'File', mode = { 'n', 'v', 'i' } },
+        { '<leader>w', group = 'File', mode = { 'n', 'v' } },
         { '<leader>e', group = 'Explorer' },
-        { '<leader>b', group = 'Buffers', { 'n', 'v', 'i' } },
+        { '<leader>b', group = 'Buffers', { 'n', 'v' } },
       },
     },
   },
@@ -893,6 +893,9 @@ require('lazy').setup({
           -- floats = 'transparent',
           comments = { italic = false },
         },
+        on_highlights = function(hl, c)
+          hl.CursorLineNr = { fg = '#3b4261' }
+        end,
       }
 
       -- Load the colorscheme here.
