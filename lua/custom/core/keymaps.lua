@@ -12,18 +12,19 @@ keyset('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
 keyset('n', '<leader>er', '<Cmd>Neotree reveal<CR>', { desc = 'Reveal current file on Neotree' })
 
 -- File manipulation
-keyset({ 'n', 'v', 'i' }, '<leader>ww', '<Cmd>:w<CR>', { desc = 'Save file' })
-keyset({ 'n', 'v', 'i' }, '<leader>wq', '<Cmd>:q<CR>', { desc = 'Quit file' })
-keyset({ 'n', 'v', 'i' }, '<leader>wc', '<Cmd>:qa!<CR>', { desc = 'Force quit file' })
-keyset({ 'n', 'v', 'i' }, '<leader>ws', '<Cmd>:wq<CR>', { desc = 'Save and quit file' })
+keyset({ 'n', 'v' }, '<leader>ww', '<Cmd>:w<CR>', { desc = 'Save file' })
+keyset({ 'n', 'v' }, '<leader>wq', '<Cmd>:q<CR>', { desc = 'Quit file' })
+keyset({ 'n', 'v' }, '<leader>wc', '<Cmd>:qa!<CR>', { desc = 'Force quit file' })
+keyset({ 'n', 'v' }, '<leader>ws', '<Cmd>:wq<CR>', { desc = 'Save and quit file' })
+map('n', '<C-s', '<Cmd>:w<CR>', opts)
 
 -- BUFFERS --
 -- Leader keys
-keyset({ 'n', 'v', 'i' }, '<leader>bq', '<Cmd>BufferClose<CR>', { desc = 'Close actual tab' })
-keyset({ 'n', 'v', 'i' }, '<leader>bl', '<Cmd>BufferNext<CR>', { desc = 'Change to next tab' })
-keyset({ 'n', 'v', 'i' }, '<leader>bh', '<Cmd>BufferPrevious<CR>', { desc = 'Change to previous tab' })
-keyset({ 'n', 'v', 'i' }, '<leader>bL<', '<Cmd>BufferMoveNext<CR>', { desc = 'Move to next tab position' })
-keyset({ 'n', 'v', 'i' }, '<leader>bH>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move to previous tab position' })
+keyset({ 'n', 'v' }, '<leader>bq', '<Cmd>BufferClose<CR>', { desc = 'Close actual tab' })
+keyset({ 'n', 'v' }, '<leader>bl', '<Cmd>BufferNext<CR>', { desc = 'Change to next tab' })
+keyset({ 'n', 'v' }, '<leader>bh', '<Cmd>BufferPrevious<CR>', { desc = 'Change to previous tab' })
+keyset({ 'n', 'v' }, '<leader>bL<', '<Cmd>BufferMoveNext<CR>', { desc = 'Move to next tab position' })
+keyset({ 'n', 'v' }, '<leader>bH>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move to previous tab position' })
 
 -- Move to previous/next
 map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
@@ -51,3 +52,10 @@ map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
 map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 map('n', '<C-w>', '<Cmd>BufferClose<CR>', opts)
+
+-- Toggle Term
+keyset({ 'n', 'v' }, '<leader>tf', '<Cmd>ToggleTerm dir=. direction=float size=50<CR>', { desc = 'Open floating terminal' })
+keyset({ 'n', 'v' }, '<leader>tv', '<Cmd>ToggleTerm dir=. direction=vertical size=50<CR>', { desc = 'Open vertical terminal' })
+keyset({ 'n', 'v' }, '<leader>th', '<Cmd>ToggleTerm dir=. direction=horizontal size=10<CR>', { desc = 'Open horizontal terminal' })
+
+map('t', '<C-q>', '<Cmd>close<CR>', opts)
