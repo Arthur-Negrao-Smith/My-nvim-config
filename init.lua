@@ -343,6 +343,8 @@ require('lazy').setup({
         { '<leader>w', group = 'File', mode = { 'n', 'v' } },
         { '<leader>e', group = 'Explorer', icon = '' },
         { '<leader>b', group = 'Buffers', { 'n', 'v' }, icon = '' },
+        { '<leader>l', group = 'Lazy', icon = '󰒲' },
+        { '<leader>m', group = 'Lsp', icon = '' },
       },
     },
   },

@@ -59,3 +59,17 @@ keyset({ 'n', 'v' }, '<leader>tv', '<Cmd>ToggleTerm dir=. direction=vertical siz
 keyset({ 'n', 'v' }, '<leader>th', '<Cmd>ToggleTerm dir=. direction=horizontal size=10<CR>', { desc = 'Open horizontal terminal' })
 
 map('t', '<C-q>', '<Cmd>close<CR>', opts)
+
+-- Lazy
+keyset({ 'n', 'v' }, '<leader>ll', '<Cmd>:Lazy<CR>', { desc = 'Open Lazy panel' })
+keyset({ 'n', 'v' }, '<leader>lc', '<Cmd>:Lazy check<CR>', { desc = 'Lazy check updates' })
+keyset({ 'n', 'v' }, '<leader>lh', '<Cmd>:Lazy health<CR>', { desc = 'Lazy health' })
+keyset({ 'n', 'v' }, '<leader>lp', '<Cmd>:Lazy help<CR>', { desc = 'Lazy help guide' })
+keyset({ 'n', 'v' }, '<leader>lm', '<Cmd>:Lazy home<CR>', { desc = 'Lazy home page' })
+
+-- Lsp
+keyset({ 'n', 'v' }, '<leader>mp', '<Cmd>:Mason<CR>', { desc = 'Mason home page' })
+keyset({ 'n', 'v' }, '<leader>mh', '<Cmd>:checkhealth mason<CR>', { desc = 'Checkhealth of mason' })
+keyset({ 'n', 'v' }, '<leader>mu', '<Cmd>:MasonUpdate<CR>', { desc = 'Mason update all languages' })
+keyset({ 'n', 'v' }, '<leader>mr', '<Cmd>:MasonUninstallAll<CR>', { desc = 'Mason uninstall all servers' })
+keyset({ 'n', 'v' }, '<leader>ml', '<Cmd>:MasonLog<CR>', { desc = 'Log of the mason' })
