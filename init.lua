@@ -639,7 +639,7 @@ require('lazy').setup({
           },
         } or {},
         virtual_text = {
-          source = 'if_many',
+          source = 'always',
           spacing = 2,
           format = function(diagnostic)
             local diagnostic_message = {
@@ -651,6 +651,10 @@ require('lazy').setup({
             return diagnostic_message[diagnostic.severity]
           end,
         },
+        signs = true, -- see the error's symbols
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
