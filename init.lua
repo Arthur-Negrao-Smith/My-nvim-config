@@ -628,8 +628,8 @@ require('lazy').setup({
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
         severity_sort = true,
-        float = { border = 'rounded', source = 'if_many' },
-        underline = { severity = vim.diagnostic.severity.ERROR },
+        float = { border = 'rounded', source = true },
+        underline = true,
         signs = vim.g.have_nerd_font and {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚 ',
@@ -638,10 +638,21 @@ require('lazy').setup({
             [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
         } or {},
+        update_in_insert = true, -- to see all hints
         virtual_text = {
-          source = 'always',
+          source = true,
           spacing = 2,
           format = function(diagnostic)
+            local severity = vim.diagnostic.severity
+            local icons = {
+              [severity.ERROR] = " ",
+              [severity.WARN] = " ",
+              [severity.INFO] = " ",
+              [severity.HINT] = " ",
+            }
+          return string.format("%s %s", icons[diagnostic.severity] or "", diagnostic.message)
+          end,
+          --[[format = function(diagnostic)
             local diagnostic_message = {
               [vim.diagnostic.severity.ERROR] = diagnostic.message,
               [vim.diagnostic.severity.WARN] = diagnostic.message,
@@ -649,12 +660,8 @@ require('lazy').setup({
               [vim.diagnostic.severity.HINT] = diagnostic.message,
             }
             return diagnostic_message[diagnostic.severity]
-          end,
+          end,]]--
         },
-        signs = true, -- see the error's symbols
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true,
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
