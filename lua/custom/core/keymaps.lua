@@ -58,7 +58,17 @@ keyset({ 'n', 'v' }, '<leader>tf', '<Cmd>ToggleTerm dir=. direction=float size=5
 keyset({ 'n', 'v' }, '<leader>tv', '<Cmd>ToggleTerm dir=. direction=vertical size=50<CR>', { desc = 'Open vertical terminal' })
 keyset({ 'n', 'v' }, '<leader>th', '<Cmd>ToggleTerm dir=. direction=horizontal size=10<CR>', { desc = 'Open horizontal terminal' })
 
-map('t', '<C-q>', '<Cmd>close<CR>', opts)
+function _G.set_terminal_keymaps()
+  local opts_t = { buffer = 0 }
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts_t)
+  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts_t)
+  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts_t)
+  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts_t)
+  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts_t)
+  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts_t)
+  vim.keymap.set('t', '<C-w>', '<Cmd>exit<CR>', opts_t) -- close terminal: ctrl + w
+end
+vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()' -- to add keymaps
 
 -- Lazy
 keyset({ 'n', 'v' }, '<leader>ll', '<Cmd>:Lazy<CR>', { desc = 'Open Lazy panel' })
