@@ -8,11 +8,18 @@ return {
       formatters_by_ft = {
         python = { 'isort', 'black' },
         lua = { 'stylua' },
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
         c = { 'clang-format' },
         cpp = { 'clang-format' },
         go = { 'gofmt' },
         markdown = { 'prettier' },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettier' },
+        css = { 'prettier' },
+        html = { 'prettier' },
+        json = { 'prettier' },
+        yaml = { 'prettier' },
+        graphql = { 'prettier' },
+        svelte = { 'prettier' },
       },
 
       format_on_save = {
