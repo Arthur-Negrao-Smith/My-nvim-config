@@ -8,6 +8,14 @@ keyset('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
 keyset('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
 keyset('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
 
+-- Indent the text
+keyset('v', '<Tab>', '>', { desc = 'Indent line to Right' })
+keyset('v', '<S-Tab>', '<', { desc = 'Indent line to left' })
+
+-- Delete text
+keyset('v', '<BS>', 'd', { desc = 'Delete selected text' }) -- <BS> is backspace
+keyset('i', '<C-BS>', '<C-w>', { desc = 'Delete section' }) -- <C-BS> is ctrl + backspace
+
 -- Neo-tree keybinds
 keyset('n', '<leader>er', '<Cmd>Neotree reveal<CR>', { desc = 'Reveal current file on Neotree' })
 
@@ -16,7 +24,14 @@ keyset({ 'n', 'v' }, '<leader>ww', '<Cmd>:w<CR>', { desc = 'Save file' })
 keyset({ 'n', 'v' }, '<leader>wq', '<Cmd>:q<CR>', { desc = 'Quit file' })
 keyset({ 'n', 'v' }, '<leader>wc', '<Cmd>:qa!<CR>', { desc = 'Force quit file' })
 keyset({ 'n', 'v' }, '<leader>ws', '<Cmd>:wq<CR>', { desc = 'Save and quit file' })
-map('n', '<C-s', '<Cmd>:w<CR>', opts)
+map('n', '<C-s>', '<Cmd>:w<CR>', opts)
+map('i', '<C-s>', '<Cmd>:w<CR>', opts)
+
+-- show lsp help
+keyset({ 'n', 'i' }, '<C-p>', vim.lsp.buf.signature_help, { desc = 'Signature help from lsp' })
+
+-- cut text selected
+keyset('v', '<C-x>', 'c', { desc = 'Cut selected text' })
 
 -- BUFFERS --
 -- Leader keys
@@ -55,8 +70,8 @@ map('n', '<C-w>', '<Cmd>BufferClose<CR>', opts)
 
 -- Toggle Term
 keyset({ 'n', 'v' }, '<leader>tf', '<Cmd>ToggleTerm dir=. direction=float size=50<CR>', { desc = 'Open floating terminal' })
-keyset({ 'n', 'v' }, '<leader>tv', '<Cmd>ToggleTerm dir=. direction=vertical size=50<CR>', { desc = 'Open vertical terminal' })
-keyset({ 'n', 'v' }, '<leader>th', '<Cmd>ToggleTerm dir=. direction=horizontal size=10<CR>', { desc = 'Open horizontal terminal' })
+keyset({ 'n', 'v' }, '<leader>tv', '<Cmd>ToggleTerm dir=. direction=vertical<CR>', { desc = 'Open vertical terminal' })
+keyset({ 'n', 'v' }, '<leader>th', '<Cmd>ToggleTerm dir=. direction=horizontal<CR>', { desc = 'Open horizontal terminal' })
 
 function _G.set_terminal_keymaps()
   local opts_t = { buffer = 0 }
@@ -83,3 +98,14 @@ keyset({ 'n', 'v' }, '<leader>mh', '<Cmd>:checkhealth mason<CR>', { desc = 'Chec
 keyset({ 'n', 'v' }, '<leader>mu', '<Cmd>:MasonUpdate<CR>', { desc = 'Mason update all languages' })
 keyset({ 'n', 'v' }, '<leader>mr', '<Cmd>:MasonUninstallAll<CR>', { desc = 'Mason uninstall all servers' })
 keyset({ 'n', 'v' }, '<leader>ml', '<Cmd>:MasonLog<CR>', { desc = 'Log of the mason' })
+
+-- Git
+keyset({ 'n', 'v' }, '<leader>gs', '<Cmd>:Gitsigns stage_hunk<CR>', { desc = 'Stage/Unstage the current hunk' })
+keyset({ 'n', 'v' }, '<leader>gr', '<Cmd>:Gitsigns reset_hunk<CR>', { desc = 'Reset the current hunk' })
+keyset({ 'n', 'v' }, '<leader>gi', '<Cmd>:Gitsigns preview_hunk_inline<CR>', { desc = 'Show the preview hunk inline' })
+keyset({ 'n', 'v' }, '<leader>gp', '<Cmd>:Gitsigns preview_hunk<CR>', { desc = 'Show the preview hunk in a popup' })
+keyset({ 'n', 'v' }, '<leader>gk', '<Cmd>:Gitsigns nav_hunk prev<CR>', { desc = 'Previous hunk' })
+keyset({ 'n', 'v' }, '<leader>gj', '<Cmd>:Gitsigns nav_hunk next<CR>', { desc = 'Next hunk' })
+keyset({ 'n', 'v' }, '<leader>gl', '<Cmd>:Gitsigns setqflist<CR>', { desc = 'List hunks' })
+keyset({ 'n', 'v' }, '<leader>gs', '<Cmd>:Gitsigns show<CR>', { desc = 'Show the old buffer commited' })
+keyset({ 'n', 'v' }, '<leader>gb', '<Cmd>:Gitsigns blame<CR>', { desc = 'Show the commits of each line' })
