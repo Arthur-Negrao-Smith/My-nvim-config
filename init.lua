@@ -345,6 +345,7 @@ require('lazy').setup({
         { '<leader>b', group = 'Buffers', { 'n', 'v' }, icon = '' },
         { '<leader>l', group = 'Lazy', icon = '󰒲' },
         { '<leader>m', group = 'Lsp', icon = '' },
+        { '<leader>p', group = 'Split', { 'n', 'v' }, icon = '' },
       },
     },
   },

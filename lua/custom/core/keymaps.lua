@@ -24,8 +24,11 @@ keyset({ 'n', 'v' }, '<leader>ww', '<Cmd>:w<CR>', { desc = 'Save file' })
 keyset({ 'n', 'v' }, '<leader>wq', '<Cmd>:q<CR>', { desc = 'Quit file' })
 keyset({ 'n', 'v' }, '<leader>wc', '<Cmd>:qa!<CR>', { desc = 'Force quit file' })
 keyset({ 'n', 'v' }, '<leader>ws', '<Cmd>:wq<CR>', { desc = 'Save and quit file' })
+
+-- Save file and Close file
 map('n', '<C-s>', '<Cmd>:w<CR>', opts)
 map('i', '<C-s>', '<Cmd>:w<CR>', opts)
+map('n', '<C-q>', '<Cmd>:q<CR>', opts)
 
 -- show lsp help
 keyset({ 'n', 'i' }, '<C-p>', vim.lsp.buf.signature_help, { desc = 'Signature help from lsp' })
@@ -33,13 +36,21 @@ keyset({ 'n', 'i' }, '<C-p>', vim.lsp.buf.signature_help, { desc = 'Signature he
 -- cut text selected
 keyset('v', '<C-x>', 'c', { desc = 'Cut selected text' })
 
+-- split buffer
+keyset({ 'n', 'v' }, '<leader>ph', '<Cmd>:split<CR>', { desc = 'Split horizontally current buffer' })
+keyset({ 'n', 'v' }, '<leader>pv', '<Cmd>:vsplit<CR>', { desc = 'Split vertically current buffer' })
+keyset({ 'n', 'v' }, '<leader>pq', '<Cmd>:q<CR>', { desc = 'Close the current splited buffer' })
+
 -- BUFFERS --
 -- Leader keys
 keyset({ 'n', 'v' }, '<leader>bq', '<Cmd>BufferClose<CR>', { desc = 'Close actual tab' })
 keyset({ 'n', 'v' }, '<leader>bl', '<Cmd>BufferNext<CR>', { desc = 'Change to next tab' })
 keyset({ 'n', 'v' }, '<leader>bh', '<Cmd>BufferPrevious<CR>', { desc = 'Change to previous tab' })
-keyset({ 'n', 'v' }, '<leader>bL<', '<Cmd>BufferMoveNext<CR>', { desc = 'Move to next tab position' })
-keyset({ 'n', 'v' }, '<leader>bH>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move to previous tab position' })
+keyset({ 'n', 'v' }, '<leader>bL', '<Cmd>BufferMoveNext<CR>', { desc = 'Move to next tab position' })
+keyset({ 'n', 'v' }, '<leader>bH', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move to previous tab position' })
+keyset({ 'n', 'v' }, '<leader>bp', '<Cmd>BufferPin<CR>', { desc = 'Pin current tab' })
+keyset({ 'n', 'v' }, '<leader>bo', '<Cmd>BufferOrderByBufferNumber<CR>', { desc = 'Order tabs by number' })
+keyset({ 'n', 'v' }, '<leader>bO', '<Cmd>BufferOrderByName<CR>', { desc = 'Order tabs by name' })
 
 -- Move to previous/next
 map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
@@ -75,13 +86,13 @@ keyset({ 'n', 'v' }, '<leader>th', '<Cmd>ToggleTerm dir=. direction=horizontal<C
 
 function _G.set_terminal_keymaps()
   local opts_t = { buffer = 0 }
-  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts_t)
-  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts_t)
-  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts_t)
-  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts_t)
-  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts_t)
-  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts_t)
-  vim.keymap.set('t', '<C-w>', '<Cmd>exit<CR>', opts_t) -- close terminal: ctrl + w
+  keyset('t', '<esc>', [[<C-\><C-n>]], opts_t)
+  keyset('t', 'jk', [[<C-\><C-n>]], opts_t)
+  keyset('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts_t)
+  keyset('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts_t)
+  keyset('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts_t)
+  keyset('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts_t)
+  keyset('t', '<C-q>', '<Cmd>exit<CR>', opts_t) -- close terminal: ctrl + q
 end
 vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()' -- to add keymaps
 
