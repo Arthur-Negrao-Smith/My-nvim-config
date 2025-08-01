@@ -168,9 +168,6 @@ vim.opt.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -340,11 +337,12 @@ require('lazy').setup({
         { '<leader>t', group = 'Terminal' },
         { '<leader>i', group = 'Toggle' },
         { '<leader>g', group = 'Git Hunk', mode = { 'n', 'v' } },
-        { '<leader>w', group = 'File', mode = { 'n', 'v' } },
+        { '<leader>q', group = 'File', mode = { 'n', 'v' } },
         { '<leader>e', group = 'Explorer', icon = '' },
         { '<leader>b', group = 'Buffers', { 'n', 'v' }, icon = '' },
         { '<leader>l', group = 'Lazy', icon = '󰒲' },
-        { '<leader>m', group = 'Lsp', icon = '' },
+        { '<leader>m', group = 'Lsp-Mason', icon = '' },
+        { '<leader>f', group = 'Lsp', icon = '' },
         { '<leader>p', group = 'Split', { 'n', 'v' }, icon = '' },
       },
     },
@@ -743,7 +741,7 @@ require('lazy').setup({
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>ff',
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,

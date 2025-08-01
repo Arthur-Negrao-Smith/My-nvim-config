@@ -20,10 +20,10 @@ keyset('i', '<C-BS>', '<C-w>', { desc = 'Delete section' }) -- <C-BS> is ctrl + 
 keyset('n', '<leader>er', '<Cmd>Neotree reveal<CR>', { desc = 'Reveal current file on Neotree' })
 
 -- File manipulation
-keyset({ 'n', 'v' }, '<leader>ww', '<Cmd>:w<CR>', { desc = 'Save file' })
-keyset({ 'n', 'v' }, '<leader>wq', '<Cmd>:q<CR>', { desc = 'Quit file' })
-keyset({ 'n', 'v' }, '<leader>wc', '<Cmd>:qa!<CR>', { desc = 'Force quit file' })
-keyset({ 'n', 'v' }, '<leader>ws', '<Cmd>:wq<CR>', { desc = 'Save and quit file' })
+keyset({ 'n', 'v' }, '<leader>qw', '<Cmd>:w<CR>', { desc = 'Save file' })
+keyset({ 'n', 'v' }, '<leader>qq', '<Cmd>:q<CR>', { desc = 'Quit file' })
+keyset({ 'n', 'v' }, '<leader>qc', '<Cmd>:qa!<CR>', { desc = 'Force quit file' })
+keyset({ 'n', 'v' }, '<leader>qs', '<Cmd>:wq<CR>', { desc = 'Save and quit file' })
 
 -- Save file and Close file
 map('n', '<C-s>', '<Cmd>:w<CR>', opts)
@@ -104,6 +104,16 @@ keyset({ 'n', 'v' }, '<leader>lp', '<Cmd>:Lazy help<CR>', { desc = 'Lazy help gu
 keyset({ 'n', 'v' }, '<leader>lm', '<Cmd>:Lazy home<CR>', { desc = 'Lazy home page' })
 
 -- Lsp
+local lsp_buf = vim.lsp.buf
+keyset({ 'n', 'v' }, '<leader>ff', lsp_buf.format, { desc = 'Format file' })
+keyset({ 'n', 'v' }, '<leader>fi', lsp_buf.implementation, { desc = 'Find symbol imprementation' })
+keyset({ 'n', 'v' }, '<leader>fd', lsp_buf.definition, { desc = 'Find symbol definition' })
+keyset({ 'n', 'v' }, '<leader>fl', lsp_buf.references, { desc = 'List all references' })
+keyset({ 'n', 'v' }, '<leader>fr', lsp_buf.rename, { desc = 'Rename all symbol occurrences' })
+keyset({ 'n', 'v' }, '<leader>fh', lsp_buf.signature_help, { desc = 'Show the signature help of the symbol' })
+keyset({ 'n', 'v' }, '<leader>fq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Lsp-Mason
 keyset({ 'n', 'v' }, '<leader>mp', '<Cmd>:Mason<CR>', { desc = 'Mason home page' })
 keyset({ 'n', 'v' }, '<leader>mh', '<Cmd>:checkhealth mason<CR>', { desc = 'Checkhealth of mason' })
 keyset({ 'n', 'v' }, '<leader>mu', '<Cmd>:MasonUpdate<CR>', { desc = 'Mason update all languages' })
@@ -111,7 +121,7 @@ keyset({ 'n', 'v' }, '<leader>mr', '<Cmd>:MasonUninstallAll<CR>', { desc = 'Maso
 keyset({ 'n', 'v' }, '<leader>ml', '<Cmd>:MasonLog<CR>', { desc = 'Log of the mason' })
 
 -- Git
-keyset({ 'n', 'v' }, '<leader>gs', '<Cmd>:Gitsigns stage_hunk<CR>', { desc = 'Stage/Unstage the current hunk' })
+keyset({ 'n', 'v' }, '<leader>ga', '<Cmd>:Gitsigns stage_hunk<CR>', { desc = 'Stage/Unstage the current hunk' })
 keyset({ 'n', 'v' }, '<leader>gr', '<Cmd>:Gitsigns reset_hunk<CR>', { desc = 'Reset the current hunk' })
 keyset({ 'n', 'v' }, '<leader>gi', '<Cmd>:Gitsigns preview_hunk_inline<CR>', { desc = 'Show the preview hunk inline' })
 keyset({ 'n', 'v' }, '<leader>gp', '<Cmd>:Gitsigns preview_hunk<CR>', { desc = 'Show the preview hunk in a popup' })
