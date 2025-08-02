@@ -113,6 +113,23 @@ keyset({ 'n', 'v' }, '<leader>fr', lsp_buf.rename, { desc = 'Rename all symbol o
 keyset({ 'n', 'v' }, '<leader>fh', lsp_buf.signature_help, { desc = 'Show the signature help of the symbol' })
 keyset({ 'n', 'v' }, '<leader>fq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+function RestartActiveLsp()
+  local lsp_client = vim.lsp.get_clients { bufnr = 0 } -- only attached in buffer 0
+
+  -- if don't have clients
+  if #lsp_client == 0 then
+    vim.notify('No Lsp client attached to current buffer', vim.log.levels.WARN)
+    return
+  end
+
+  -- restart first client
+  local lsp_name = lsp_client[1].name
+  local cmd = string.format('LspRestart %s', lsp_name)
+  vim.cmd(cmd)
+  vim.notify('Lsp ' .. lsp_name .. ' was restarted')
+end
+keyset({ 'n', 'v' }, '<leader>ft', RestartActiveLsp, { desc = 'Restart active lsp' })
+
 -- Lsp-Mason
 keyset({ 'n', 'v' }, '<leader>mp', '<Cmd>:Mason<CR>', { desc = 'Mason home page' })
 keyset({ 'n', 'v' }, '<leader>mh', '<Cmd>:checkhealth mason<CR>', { desc = 'Checkhealth of mason' })
