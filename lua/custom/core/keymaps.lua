@@ -128,7 +128,30 @@ function RestartActiveLsp()
   vim.cmd(cmd)
   vim.notify('Lsp ' .. lsp_name .. ' was restarted')
 end
-keyset({ 'n', 'v' }, '<leader>ft', RestartActiveLsp, { desc = 'Restart active lsp' })
+keyset({ 'n', 'v' }, '<leader>ft', RestartActiveLsp, { desc = 'Restart active LSP' })
+
+function RestartAllLsps()
+  local lsp_clients = vim.lsp.get_clients() -- all lsp clients
+
+  -- if don't have clients
+  if #lsp_clients == 0 then
+    vim.notify('No Lsp active LSP clients found', vim.log.levels.WARN)
+    return
+  end
+
+  local restarted = {}
+  local restarted_lsp_names = ''
+  for _, client in ipairs(lsp_clients) do
+    if not restarted[client.name] then
+      vim.cmd('LspRestart ' .. client.name)
+      restarted_lsp_names = restarted_lsp_names .. client.name .. ' '
+      restarted[client.name] = true
+    end
+  end
+
+  vim.notify('Restarted LSPs: ' .. restarted_lsp_names)
+end
+keyset({ 'n', 'v' }, '<leader>fa', RestartAllLsps, { desc = 'Restart all active LSPs' })
 
 -- Lsp-Mason
 keyset({ 'n', 'v' }, '<leader>mp', '<Cmd>:Mason<CR>', { desc = 'Mason home page' })
