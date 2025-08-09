@@ -18,6 +18,9 @@ keyset('i', '<C-BS>', '<C-w>', { desc = 'Delete section' }) -- <C-BS> is ctrl + 
 
 -- Neo-tree keybinds
 keyset('n', '<leader>er', '<Cmd>Neotree reveal<CR>', { desc = 'Reveal current file on Neotree' })
+keyset({ 'n', 'v' }, '<leader>eb', '<Cmd>Neotree buffers<CR>', { desc = 'Show all active buffers' })
+keyset({ 'n', 'v' }, '<leader>eg', '<Cmd>Neotree float git_status<CR>', { desc = 'Git status' })
+keyset({ 'n', 'v' }, '<leader>eb', '<Cmd>Neotree buffers<CR>', { desc = 'Show all active buffers' })
 
 -- File manipulation
 keyset({ 'n', 'v' }, '<leader>qw', '<Cmd>:w<CR>', { desc = 'Save file' })
