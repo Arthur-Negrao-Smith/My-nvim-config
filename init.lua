@@ -344,6 +344,7 @@ require('lazy').setup({
         { '<leader>m', group = 'Lsp-Mason', icon = '' },
         { '<leader>f', group = 'Lsp', icon = '' },
         { '<leader>p', group = 'Split', { 'n', 'v' }, icon = '' },
+        { '<leader>z', group = 'Yazi', { 'n', 'v' }, icon = '󰇥' },
       },
     },
   },
