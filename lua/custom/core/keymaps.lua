@@ -34,7 +34,9 @@ map('i', '<C-s>', '<Cmd>:w<CR>', opts)
 map('n', '<C-q>', '<Cmd>:q<CR>', opts)
 
 -- show lsp help
-keyset({ 'n', 'i' }, '<C-p>', vim.lsp.buf.signature_help, { desc = 'Signature help from lsp' })
+keyset({ 'n', 'i' }, '<C-p>', function()
+  require('lsp_signature').toggle_float_win()
+end, { desc = 'Toggle signature help' })
 
 -- cut text selected
 keyset('v', '<C-x>', 'c', { desc = 'Cut selected text' })
@@ -113,7 +115,9 @@ keyset({ 'n', 'v' }, '<leader>fi', lsp_buf.implementation, { desc = 'Find symbol
 keyset({ 'n', 'v' }, '<leader>fd', lsp_buf.definition, { desc = 'Find symbol definition' })
 keyset({ 'n', 'v' }, '<leader>fl', lsp_buf.references, { desc = 'List all references' })
 keyset({ 'n', 'v' }, '<leader>fr', lsp_buf.rename, { desc = 'Rename all symbol occurrences' })
-keyset({ 'n', 'v' }, '<leader>fh', lsp_buf.signature_help, { desc = 'Show the signature help of the symbol' })
+keyset({ 'n', 'v' }, '<leader>fh', function()
+  require('lsp_signature').toggle_float_win()
+end, { desc = 'Show the signature help' })
 keyset({ 'n', 'v' }, '<leader>fq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 function RestartActiveLsp()
