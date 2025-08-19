@@ -3,6 +3,18 @@ vim.defer_fn(function()
   vim.cmd 'nmap n n'
 end, 100)
 
+-- time to update commands
+vim.o.updatetime = 1000
+
+-- Lsp hover
+vim.api.nvim_create_autocmd('CursorHold', {
+  callback = function()
+    -- use <C-j> or <C-k> to enter in pop-up and q to close it
+    -- use <C-d> or <C-u> to move in pop-up
+    vim.lsp.buf.hover { focusable = true, border = 'rounded', max_height = 20, max_width = 80 }
+  end,
+})
+
 -- REPLACE STRINGS
 function Sub(opts)
   local args = vim.split(opts.args, ' ')
