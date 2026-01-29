@@ -2,6 +2,9 @@ local keyset = vim.keymap.set
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+-- to add groups
+local wk = require 'which-key'
+
 -- Change split window position
 keyset('n', '<C-S-h>', '<C-w>H', { desc = 'Move window to the left' })
 keyset('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
@@ -33,13 +36,14 @@ map('n', '<C-s>', '<Cmd>:w<CR>', opts)
 map('i', '<C-s>', '<Cmd>:w<CR>', opts)
 map('n', '<C-q>', '<Cmd>:q<CR>', opts)
 
+-- Undo and Cut
+keyset({ 'n', 'i' }, '<C-z>', '<Cmd>:u<CR>', { desc = 'Undo' })
+keyset('v', '<C-x>', '<Cmd>:c<CR>', { desc = 'Cut selected text' })
+
 -- show lsp help
 keyset({ 'n', 'i' }, '<C-p>', function()
   require('lsp_signature').toggle_float_win()
 end, { desc = 'Toggle signature help' })
-
--- cut text selected
-keyset('v', '<C-x>', 'c', { desc = 'Cut selected text' })
 
 -- split buffer
 keyset({ 'n', 'v' }, '<leader>ph', '<Cmd>:split<CR>', { desc = 'Split horizontally current buffer' })
@@ -111,16 +115,26 @@ keyset({ 'n', 'v' }, '<leader>lm', '<Cmd>:Lazy home<CR>', { desc = 'Lazy home pa
 -- Lsp
 local lsp_buf = vim.lsp.buf
 keyset({ 'n', 'v' }, '<leader>ff', lsp_buf.format, { desc = 'Format file' })
-keyset({ 'n', 'v' }, '<leader>fi', lsp_buf.implementation, { desc = 'Find symbol imprementation' })
-keyset({ 'n', 'v' }, '<leader>fd', lsp_buf.definition, { desc = 'Find symbol definition' })
-keyset({ 'n', 'v' }, '<leader>fl', lsp_buf.references, { desc = 'List all references' })
+keyset({ 'n', 'v' }, '<leader>fe', require('telescope.builtin').lsp_references, { desc = 'Find all References' })
+keyset({ 'n', 'v' }, '<leader>fi', require('telescope.builtin').lsp_implementations, { desc = 'Find all implementations' })
+keyset({ 'n', 'v' }, '<leader>fd', require('telescope.builtin').lsp_definitions, { desc = 'Find all definitions' })
 keyset({ 'n', 'v' }, '<leader>fr', lsp_buf.rename, { desc = 'Rename all symbol occurrences' })
+keyset({ 'n', 'v', 'i' }, '<F2>', lsp_buf.rename, { desc = 'Rename all symbol occurrences' })
+keyset({ 'n', 'v' }, '<leader>fc', lsp_buf.code_action, { desc = 'Code Action' })
+keyset({ 'n', 'v' }, '<leader>fq', vim.diagnostic.setloclist, { desc = 'Open diagnostic quickfix list' })
+
+wk.add {
+  { '<leader>fl', group = 'Lsp list' },
+}
+keyset({ 'n', 'v' }, '<leader>fli', lsp_buf.implementation, { desc = 'List all symbol imprementations' })
+keyset({ 'n', 'v' }, '<leader>fld', lsp_buf.definition, { desc = 'List all symbol definitions' })
+keyset({ 'n', 'v' }, '<leader>flr', lsp_buf.references, { desc = 'List all references' })
+
 keyset({ 'n', 'v' }, '<leader>fh', function()
   require('lsp_signature').toggle_float_win()
 end, { desc = 'Show the signature help' })
-keyset({ 'n', 'v' }, '<leader>fq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
-function RestartActiveLsp()
+local restartActiveLsp = function()
   local lsp_client = vim.lsp.get_clients { bufnr = 0 } -- only attached in buffer 0
 
   -- if don't have clients
@@ -135,9 +149,9 @@ function RestartActiveLsp()
   vim.cmd(cmd)
   vim.notify('Lsp ' .. lsp_name .. ' was restarted')
 end
-keyset({ 'n', 'v' }, '<leader>ft', RestartActiveLsp, { desc = 'Restart active LSP' })
+keyset({ 'n', 'v' }, '<leader>ft', restartActiveLsp, { desc = 'Restart active LSP' })
 
-function RestartAllLsps()
+local restartAllLsps = function()
   local lsp_clients = vim.lsp.get_clients() -- all lsp clients
 
   -- if don't have clients
@@ -158,7 +172,7 @@ function RestartAllLsps()
 
   vim.notify('Restarted LSPs: ' .. restarted_lsp_names)
 end
-keyset({ 'n', 'v' }, '<leader>fa', RestartAllLsps, { desc = 'Restart all active LSPs' })
+keyset({ 'n', 'v' }, '<leader>fa', restartAllLsps, { desc = 'Restart all active LSPs' })
 
 -- Lsp-Mason
 keyset({ 'n', 'v' }, '<leader>mp', '<Cmd>:Mason<CR>', { desc = 'Mason home page' })
