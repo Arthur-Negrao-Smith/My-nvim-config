@@ -345,6 +345,7 @@ require('lazy').setup({
         { '<leader>f', group = 'Lsp', icon = '' },
         { '<leader>p', group = 'Split', { 'n', 'v' }, icon = '' },
         { '<leader>z', group = 'Yazi', { 'n', 'v' }, icon = '󰇥' },
+        { '<leader>r', group = 'Task-Runner', { 'n', 'v' }, icon = '' },
       },
     },
   },

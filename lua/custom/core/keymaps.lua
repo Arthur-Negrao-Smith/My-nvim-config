@@ -191,3 +191,9 @@ keyset({ 'n', 'v' }, '<leader>gj', '<Cmd>:Gitsigns nav_hunk next<CR>', { desc = 
 keyset({ 'n', 'v' }, '<leader>gl', '<Cmd>:Gitsigns setqflist<CR>', { desc = 'List hunks' })
 keyset({ 'n', 'v' }, '<leader>gs', '<Cmd>:Gitsigns show<CR>', { desc = 'Show the old buffer commited' })
 keyset({ 'n', 'v' }, '<leader>gb', '<Cmd>:Gitsigns blame<CR>', { desc = 'Show the commits of each line' })
+
+-- JustRun
+keyset({ 'n', 'v' }, '<leader>rr', '<Cmd>:JustRun<CR>', { desc = 'Run the default task' })
+keyset({ 'n', 'v' }, '<leader>rs', '<Cmd>:JustRunUi<CR>', { desc = 'Show the tasks menu' })
+keyset({ 'n', 'v' }, '<leader>rl', '<Cmd>:JustRunLast<CR>', { desc = 'Run the last task' })
+keyset({ 'n', 'v' }, '<leader>ru', '<Cmd>:JustRunUnderCursor<CR>', { desc = 'Run task under the cursor' })
