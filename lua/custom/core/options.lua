@@ -1,7 +1,22 @@
 -- line numbers
-vim.opt.relativenumber = true
-vim.opt.shell = '/bin/zsh'
 vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- current shell
+---@return string
+local function get_shell()
+  if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
+    return 'powershell'
+  end
+
+  if vim.fn.has 'zsh' == 1 then
+    return 'zsh'
+  end
+
+  return 'bash'
+end
+
+vim.opt.shell = get_shell()
 
 -- tabs & indents
 vim.opt.tabstop = 2

@@ -67,4 +67,6 @@ vim.api.nvim_create_user_command('Substitute', Sub, {
 })
 
 -- Add help guides from doc
-vim.cmd 'helptags ~/.config/nvim/doc'
+---@type string
+local config_path = vim.fn.stdpath 'config'
+vim.cmd('helptags ' .. config_path .. '/doc')
