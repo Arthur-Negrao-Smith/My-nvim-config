@@ -4,8 +4,12 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
 
-  -- Lazy Loading
-  cmd = { 'JustRun', 'JustRunUnderCursor', 'JustRunUi' },
+  version = '*',
 
-  opts = {},
+  -- Lazy Loading
+  cmd = { 'JustRun', 'JustRunUnderCursor', 'JustRunFind', 'JustRunFile' },
+
+  config = function()
+    require('justrun').setup {}
+  end,
 }

@@ -194,6 +194,9 @@ keyset({ 'n', 'v' }, '<leader>gb', '<Cmd>:Gitsigns blame<CR>', { desc = 'Show th
 
 -- JustRun
 keyset({ 'n', 'v' }, '<leader>rr', '<Cmd>:JustRun<CR>', { desc = 'Run the default task' })
-keyset({ 'n', 'v' }, '<leader>rs', '<Cmd>:JustRunUi<CR>', { desc = 'Show the tasks menu' })
-keyset({ 'n', 'v' }, '<leader>rl', '<Cmd>:JustRunLast<CR>', { desc = 'Run the last task' })
+keyset({ 'n', 'v' }, '<leader>rf', '<Cmd>:JustRunFind<CR>', { desc = 'Find tasks' })
+keyset({ 'n', 'v' }, '<leader>rc', '<Cmd>:JustRunFile<CR>', { desc = 'Run the current file' })
+keyset({ 'n', 'v' }, '<leader>rl', '<Cmd>:JustRunLast<CR>', { desc = 'Rerun the last task' })
 keyset({ 'n', 'v' }, '<leader>ru', '<Cmd>:JustRunUnderCursor<CR>', { desc = 'Run task under the cursor' })
+
+keyset({ 'n', 'v' }, '<F5>', '<Cmd>:JustRunFile<CR>', { desc = 'Run the current file' })
