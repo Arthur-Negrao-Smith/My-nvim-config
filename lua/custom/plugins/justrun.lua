@@ -7,7 +7,7 @@ return {
   version = '*',
 
   -- Lazy Loading
-  cmd = { 'JustRun', 'JustRunUnderCursor', 'JustRunFind', 'JustRunFile' },
+  cmd = { 'JustRun', 'JustRunUnderCursor', 'JustRunFind', 'JustRunFile', 'JustRunToggle' },
 
   config = function()
     require('justrun').setup {}
