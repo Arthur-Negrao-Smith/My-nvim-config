@@ -3,6 +3,17 @@ vim.defer_fn(function()
   vim.cmd 'nmap n n'
 end, 100)
 
+--[[
+-- auto start tree-sitter highlight
+vim.api.nvim_create_autocmd('BufReadPost', {
+  pattern = '*',
+  callback = function()
+    vim.treesitter.start()
+  end,
+  once = true,
+})
+]]
+
 -- time to update commands
 vim.o.updatetime = 1000
 
